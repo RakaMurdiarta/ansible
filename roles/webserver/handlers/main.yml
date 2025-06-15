@@ -1,0 +1,10 @@
+- name: start_nginx
+  ansible.builtin.service:
+    enabled: true
+    name: nginx
+    state: started
+
+- name: restart_nginx
+  ansible.builtin.service:
+    name: nginx
+    state: restarted

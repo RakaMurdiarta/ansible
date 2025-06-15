@@ -1,0 +1,1 @@
+ansible -m setup <nama_host> = untuk melihat list var yang sudah ada 

@@ -1,0 +1,15 @@
+---
+- hosts: dev
+  gather_facts: true
+  pre_tasks:
+    - name: Update apt cache
+      become: true
+      ansible.builtin.apt:
+        update_cache: yes
+  tasks:
+    - name: HOME path
+      become: false
+      ansible.builtin.debug:
+        msg: '{{ansible_env.HOME}}'
+  # roles:
+  #   - node
