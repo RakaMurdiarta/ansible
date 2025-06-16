@@ -14,8 +14,8 @@
   ansible.builtin.shell: |
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    nvm install 20
-    nvm alias default 20
+    nvm install {{node_v}}
+    nvm alias default {{node_v}}
     nvm use default
   args:
     executable: /bin/bash
