@@ -1,30 +1,31 @@
 - name: Cloning Project
   become: true
   ansible.builtin.git:
-    repo: https://github.com/RakaMurdiarta/mds.git
-    dest: /var/www/mds
+    repo: git@github.com:RakaMurdiarta/uploader.git
+    dest: /var/www/uploader
     single_branch: yes
     version: dev
-    update: yes
+    accept_hostkey: true
+    key_file: '{{ansible_env.HOME}}/.ssh/id_rsa'
 
 - name: Change Ownership
   become: true
   ansible.builtin.file:
-    path: /var/www/mds
+    path: /var/www/uploader
     recurse: yes
-    owner: srv1
+    owner: ansible
     group: www-data
 
 - name: Set setgid bit on folder project
   become: true
   ansible.builtin.command:
     chdir: /var/www
-    cmd: chmod g+s mds
+    cmd: chmod g+s uploader
 
 - name: Copy Env
   become: true
   ansible.builtin.copy:
     src: dev.env
-    dest: /var/www/mds/.env
-    owner: srv1
+    dest: /var/www/uploader/.env
+    owner: ansible
     mode: '0644'

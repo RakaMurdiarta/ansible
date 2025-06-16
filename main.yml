@@ -6,10 +6,9 @@
       become: true
       ansible.builtin.apt:
         update_cache: yes
-  tasks:
-    - name: HOME path
-      become: false
-      ansible.builtin.debug:
-        msg: '{{ansible_env.HOME}}'
-  # roles:
-  #   - node
+  roles:
+    - webserver
+    - node
+    - clone
+    - build
+    - runner

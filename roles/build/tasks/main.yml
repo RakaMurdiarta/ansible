@@ -1,0 +1,19 @@
+- name: Install dependencies with pnpm
+  become: false
+  ansible.builtin.shell: |
+    export PNPM_HOME="$HOME/.local/share/pnpm"
+    export PATH="$PNPM_HOME:$PATH"
+    pnpm install
+  args:
+    chdir: /var/www/uploader
+    executable: /bin/bash
+
+- name: Build App
+  become: false
+  ansible.builtin.shell: |
+    export PNPM_HOME="$HOME/.local/share/pnpm"
+    export PATH="$PNPM_HOME:$PATH"
+    pnpm run build
+  args:
+    chdir: /var/www/uploader
+    executable: /bin/bash

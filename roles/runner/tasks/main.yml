@@ -1,0 +1,9 @@
+- name: Run Project Using PM2 via NVM
+  become: false
+  ansible.builtin.shell: |
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    pm2 start dist/main.js
+  args:
+    chdir: /var/www/uploader
+    executable: /bin/bash
